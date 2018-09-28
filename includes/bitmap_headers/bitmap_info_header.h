@@ -12,6 +12,8 @@
 
 #pragma pack(2)
 
+namespace bitmap_headers
+{
 struct bitmap_info_header
 {
 	std::uint32_t header_size{40}; //add all bytes in this struct, they add upto 40
@@ -26,5 +28,6 @@ struct bitmap_info_header
 	std::uint32_t colors{0};
 	std::uint32_t important_colors{0};
 };
+}
 
 #endif /* INCLUDES_BITMAP_INFO_HEADER_H_ */

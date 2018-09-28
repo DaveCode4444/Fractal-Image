@@ -12,6 +12,8 @@
 
 #pragma pack(2) //makes struct exactly as it is in memory, removes extra padding
 
+namespace bitmap_headers
+{
 struct bitmap_file_header
 {
 	char header[2]{'B', 'M'};
@@ -19,5 +21,6 @@ struct bitmap_file_header
 	std::int32_t reserved{0};
 	std::int32_t data_offset;
 };
+}
 
 #endif /* INCLUDES_BITMAP_FILE_HEADER_H_ */
