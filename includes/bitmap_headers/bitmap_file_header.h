@@ -10,7 +10,7 @@
 
 #include <cstdint>
 
-#pragma pack(2) //makes struct exactly as it is in memory, removes extra padding
+#pragma pack(push, 2) //makes struct exactly as it is in memory, removes extra padding
 
 namespace bitmap_headers
 {
@@ -22,5 +22,7 @@ struct bitmap_file_header
 	std::int32_t data_offset;
 };
 }
+
+#pragma pack(pop)
 
 #endif /* INCLUDES_BITMAP_FILE_HEADER_H_ */

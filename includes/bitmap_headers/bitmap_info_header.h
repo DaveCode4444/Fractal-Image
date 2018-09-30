@@ -10,7 +10,7 @@
 
 #include <cstdint>
 
-#pragma pack(2)
+#pragma pack(push, 2)
 
 namespace bitmap_headers
 {
@@ -29,5 +29,7 @@ struct bitmap_info_header
 	std::uint32_t important_colors{0};
 };
 }
+
+#pragma pack(pop)
 
 #endif /* INCLUDES_BITMAP_INFO_HEADER_H_ */

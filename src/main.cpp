@@ -5,13 +5,27 @@
  *  Created on: Sep 25, 2018
  *      Author: Devang Sawant
  */
-#include "../includes/bitmap_headers/bitmap_file_header.h"
-#include "../includes/bitmap_headers/bitmap_info_header.h"
+#include "../includes/bitmap.h"
 
 #include <iostream>
 
 int main()
 {
-	std::cout << "Created bitmap file header" << std::endl;
+	const int WIDTH = 800;
+	const int HEIGHT = 600;
+
+	bitmap bitmap(WIDTH, HEIGHT); //bitmap object
+	bitmap.set_pixel(WIDTH/2, HEIGHT/2, 255, 255, 255);
+
+//	for(int y = 0; y < HEIGHT; y++)
+//	{
+//		for(int x = 0; x < WIDTH; x++)
+//		{
+//			bitmap.set_pixel(x, y, 255, 0, 0);
+//		}
+//	}
+	bitmap.write("fractal.bmp");
+
+	std::cout << "Bitmap file created." << std::endl;
 	return 0;
 }
