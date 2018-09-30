@@ -15,15 +15,13 @@ int main()
 	const int HEIGHT = 600;
 
 	bitmap bitmap(WIDTH, HEIGHT); //bitmap object
-	bitmap.set_pixel(WIDTH/2, HEIGHT/2, 255, 255, 255);
-
-//	for(int y = 0; y < HEIGHT; y++)
-//	{
-//		for(int x = 0; x < WIDTH; x++)
-//		{
-//			bitmap.set_pixel(x, y, 255, 0, 0);
-//		}
-//	}
+	for(int y = 0; y < HEIGHT; y++)
+	{
+		for(int x = 0; x < WIDTH; x++)
+		{
+			bitmap.set_pixel(x, y, 255, 0, 0);
+		}
+	}
 	bitmap.write("fractal.bmp");
 
 	std::cout << "Bitmap file created." << std::endl;
