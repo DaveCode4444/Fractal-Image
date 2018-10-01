@@ -8,6 +8,9 @@
 #ifndef INCLUDES_BITMAP_H_
 #define INCLUDES_BITMAP_H_
 
+#include "../includes/bitmap_headers/bitmap_file_header.h"
+#include "../includes/bitmap_headers/bitmap_info_header.h"
+
 #include <cstdint>
 #include <memory>
 #include <string>
@@ -26,6 +29,10 @@ class bitmap
 					   std::uint8_t blue);
 
     private:
+	    bool write_headers_and_pixels_to_file(std::string &filename,
+											  bitmap_headers::bitmap_file_header file_header,
+											  bitmap_headers::bitmap_info_header info_header);
+
 	    int m_height;
 	    int m_width;
 

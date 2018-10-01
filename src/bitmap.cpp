@@ -34,6 +34,17 @@ bool bitmap::write(std::string filename)
 	info_header.width = m_width;
 	info_header.height = m_height;
 
+	bool write_to_file_successful = write_headers_and_pixels_to_file(filename,
+															         file_header,
+															         info_header);
+
+	return write_to_file_successful;
+}
+
+bool bitmap::write_headers_and_pixels_to_file(std::string &filename,
+		                                      bitmap_headers::bitmap_file_header file_header,
+										      bitmap_headers::bitmap_info_header info_header)
+{
 	std::ofstream file;
 	file.open(filename, std::ios::out | std::ios::binary);
 
@@ -52,7 +63,6 @@ bool bitmap::write(std::string filename)
 	{
 		return false;
 	}
-
 	return true;
 }
 
