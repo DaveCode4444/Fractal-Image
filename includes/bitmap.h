@@ -21,7 +21,7 @@ class bitmap
 	    bitmap(int width, int height);
 	    virtual ~bitmap();
 
-	    bool write(std::string filename);
+	    bool write(const std::string &filename);
 	    void set_pixel(int x,
 	    			   int y,
 					   std::uint8_t red,
@@ -29,7 +29,7 @@ class bitmap
 					   std::uint8_t blue);
 
     private:
-	    bool write_headers_and_pixels_to_file(std::string &filename,
+	    bool write_headers_and_pixels_to_file(const std::string &filename,
 											  bitmap_headers::bitmap_file_header file_header,
 											  bitmap_headers::bitmap_info_header info_header);
 

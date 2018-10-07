@@ -23,7 +23,7 @@ bitmap::~bitmap()
 {
 }
 
-bool bitmap::write(std::string filename)
+bool bitmap::write(const std::string &filename)
 {
 	bitmap_headers::bitmap_file_header file_header;
 	bitmap_headers::bitmap_info_header info_header;
@@ -41,7 +41,7 @@ bool bitmap::write(std::string filename)
 	return write_to_file_successful;
 }
 
-bool bitmap::write_headers_and_pixels_to_file(std::string &filename,
+bool bitmap::write_headers_and_pixels_to_file(const std::string &filename,
 		                                      bitmap_headers::bitmap_file_header file_header,
 										      bitmap_headers::bitmap_info_header info_header)
 {
