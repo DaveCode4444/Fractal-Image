@@ -72,10 +72,10 @@ void bitmap::set_pixel(int x,
 					   std::uint8_t green,
 					   std::uint8_t blue)
 {
-	std::uint8_t *pixel = m_pixels.get();
-	pixel += (y * 3) * m_width + (x * 3);
+	std::uint8_t *pixel = m_pixels.get(); //get raw pointer to the array of pixels
 
-	pixel[0] = blue;
+	pixel += (y * 3) * m_width + (x * 3); //navigate to the pixel location
+	pixel[0] = blue;  // set its 3 components
 	pixel[1] = green;
 	pixel[2] = red;
 }

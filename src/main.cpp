@@ -6,7 +6,9 @@
  *      Author: Devang Sawant
  */
 #include "../includes/bitmap.h"
+#include "../includes/mandelbrot.h"
 
+#include <cstdint>
 #include <iostream>
 
 int main()
@@ -19,22 +21,25 @@ int main()
 	double min = 999999;
 	double max = -999999;
 
+	//iterating over the complete bitmap i.e. 800*600
 	for(int y = 0; y < HEIGHT; y++)
 	{
 		for(int x = 0; x < WIDTH; x++)
 		{
-			double x_fractal = (x - WIDTH/2) * 2.0/WIDTH;
-			//double y_fractal = (y - HEIGHT/2) * 2.0/HEIGHT;
+			double x_fractal = (x - WIDTH/2 - 200) * 2.0/HEIGHT;
+			double y_fractal = (y - HEIGHT/2) * 2.0/HEIGHT;
 
-			if(x_fractal < min) min = x_fractal;
-			if(x_fractal > max) max = x_fractal;
-			//bitmap.set_pixel(x, y, 255, 0, 0);
+			int iterations = mandelbrot::get_iterations(x_fractal, y_fractal);
+			std::uint8_t color = (std::uint8_t)(256 * (double)iterations/mandelbrot::MAX_ITERATIONS);
+			color = color * color * color;
+			bitmap.set_pixel(x, y, 0, 0, color);
+
+			if(color < min) min = color;
+			if(color > max) max = color;
 		}
 	}
 
-	std::cout << min << " " << max << std::endl;
 	bitmap.write("fractal.bmp");
-
 	std::cout << "Bitmap file created." << std::endl;
 	return 0;
 }
