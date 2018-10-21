@@ -12,7 +12,7 @@
 #include <fstream>
 #include <string>
 
-bitmap::bitmap(int width, int height) :
+bitmap::bitmap(const int &width, const int &height) :
     m_height(height),
 	m_width(width),
 	m_pixels(new std::uint8_t[width * height * 3]{ }) //each pixel has 3 components (R, G, B)

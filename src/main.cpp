@@ -10,6 +10,7 @@
 
 #include <cstdint>
 #include <iostream>
+#include <math.h>
 #include <memory>
 
 int main()
@@ -24,7 +25,7 @@ int main()
 	std::unique_ptr<int[]> histogram(new int[mandelbrot::MAX_ITERATIONS + 1]{0});
 	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
 
-	//iterating over the complete bitmap i.e. 800*600
+	//iterating over the complete bitmap i.e. 800*600, populating histogram and fractal
 	for(int y = 0; y < HEIGHT; y++)
 	{
 		for(int x = 0; x < WIDTH; x++)
@@ -41,7 +42,7 @@ int main()
 		}
 	}
 
-	//total number of iterations
+	//total number of iterations, adding all elements of histogram
 	int total = 0;
 	for(int i = 0; i < mandelbrot::MAX_ITERATIONS; i++)
 	{
@@ -53,16 +54,20 @@ int main()
 	{
 		for(int x = 0; x < WIDTH; x++)
 		{
-			int iterations = fractal[y*WIDTH + x];
-			double hue = 0.0;
-			for(int i = 0; i <= iterations; i++)
-			{
-				hue += ((double)histogram[i])/total;
-			}
-
 			std::uint8_t red = 0;
-			std::uint8_t green = hue * 255;
-			std::uint8_t blue = hue * 255;
+			std::uint8_t green = 0;
+			std::uint8_t blue = 0;
+
+			int iterations = fractal[y*WIDTH + x];
+			if(iterations != mandelbrot::MAX_ITERATIONS)
+			{
+				double hue = 0.0;
+				for(int i = 0; i <= iterations; i++)
+				{
+					hue += ((double)histogram[i])/total;
+				}
+				green = pow(255, hue);
+			}
 			bitmap.set_pixel(x, y, red, green, blue);
 		}
 	}

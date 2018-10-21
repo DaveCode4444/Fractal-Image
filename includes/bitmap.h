@@ -18,7 +18,7 @@
 class bitmap
 {
     public:
-	    bitmap(int width, int height);
+	    bitmap(const int &width, const int &height);
 	    virtual ~bitmap();
 
 	    bool write(const std::string &filename);

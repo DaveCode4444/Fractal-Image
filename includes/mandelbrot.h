@@ -14,7 +14,7 @@ class mandelbrot
 	    mandelbrot();
 	    virtual ~mandelbrot();
 
-	    static int get_iterations(double x, double y);
+	    static int get_iterations(double &x, double &y);
 
 	    static const int MAX_ITERATIONS = 1000;
 };

@@ -16,7 +16,7 @@ mandelbrot::~mandelbrot()
 {
 }
 
-int mandelbrot::get_iterations(double x, double y)
+int mandelbrot::get_iterations(double &x, double &y)
 {
 	std::complex<double> z = 0; //complex number
 	std::complex<double> c(x, y);
