@@ -16,7 +16,7 @@
 class zoom_list
 {
     public:
-	    zoom_list(int width, int height);
+	    zoom_list(const int &width, const int &height);
 	    virtual ~zoom_list();
 
 	    void add(const zoom &the_zoom);
@@ -27,6 +27,9 @@ class zoom_list
 
 	    int m_width;
 	    int m_height;
+	    double m_xCenter;
+	    double m_yCenter;
+	    double m_scale;
 };
 
 #endif /* INCLUDES_ZOOM_LIST_H_ */

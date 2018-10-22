@@ -7,6 +7,8 @@
  */
 #include "../includes/bitmap.h"
 #include "../includes/mandelbrot.h"
+#include "../includes/zoom.h"
+#include "../includes/zoom_list.h"
 
 #include <cstdint>
 #include <iostream>
@@ -22,6 +24,10 @@ int main()
 
 //	double min = 999999;
 //	double max = -999999;
+	zoom_list the_zoom_list(WIDTH, HEIGHT);
+	the_zoom_list.add(zoom(WIDTH/2, HEIGHT/2, 4.0/WIDTH));
+	the_zoom_list.add(zoom(268, HEIGHT - 229, 0.2));
+
 	std::unique_ptr<int[]> histogram(new int[mandelbrot::MAX_ITERATIONS + 1]{0});
 	std::unique_ptr<int[]> fractal(new int[WIDTH * HEIGHT]{0});
 
@@ -30,8 +36,9 @@ int main()
 	{
 		for(int x = 0; x < WIDTH; x++)
 		{
-			double x_fractal = (x - WIDTH/2 - 200) * 2.0/HEIGHT; //scaling for printing the mandelbrot image in somewhat middle of the entire bitmap
-			double y_fractal = (y - HEIGHT/2) * 2.0/HEIGHT;
+			std::pair<double, double> coordinates = the_zoom_list.do_zoom(x, y);
+			double x_fractal = coordinates.first; //scaling for printing the mandelbrot image in somewhat middle of the entire bitmap
+			double y_fractal = coordinates.second;
 			int iterations = mandelbrot::get_iterations(x_fractal, y_fractal);
 			fractal[y*WIDTH + x] = iterations;
 
