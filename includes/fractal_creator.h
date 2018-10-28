@@ -9,34 +9,39 @@
 #define INCLUDES_FRACTAL_CREATOR_H_
 
 #include "../includes/bitmap.h"
+#include "../includes/rgb.h"
 #include "../includes/zoom.h"
 #include "../includes/zoom_list.h"
 
 #include <memory>
 #include <string>
+#include <vector>
 
 class fractal_creator
-{
-    public:
-	    fractal_creator(const int &width, const int &height);
-	    virtual ~fractal_creator();
+	{
+	public:
+		fractal_creator(const int &width, const int &height);
+		virtual ~fractal_creator();
 
-	    void run(const std::string &filename);
+		void run(const std::string &filename);
+		void add_color_range(double range_end, const rgb &color);
 
-    private:
-	    void add_zoom(const zoom &the_zoom);
+	private:
+		void add_zoom(const zoom &the_zoom);
 		void calculate_iterations();
 		void draw_fractal();
 		void write_bitmap(const std::string &filename);
 
-	    const int m_width;
-	    const int m_height;
-	    int m_total_iterations;
+		const int m_width;
+		const int m_height;
+		int m_total_iterations;
+		std::vector<int> m_ranges;
+		std::vector<rgb> m_colors;
 
-	    bitmap m_bitmap;
-	    zoom_list m_zoom_list;
-	    std::unique_ptr<int[]> m_histogram;
-	    std::unique_ptr<int[]> m_fractal;
+		bitmap m_bitmap;
+		zoom_list m_zoom_list;
+		std::unique_ptr<int[]> m_histogram;
+		std::unique_ptr<int[]> m_fractal;
 };
 
 #endif /* INCLUDES_FRACTAL_CREATOR_H_ */

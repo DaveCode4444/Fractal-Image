@@ -8,7 +8,7 @@
 #include "../includes/rgb.h"
 
 rgb::rgb(double red, double green, double blue) :
-    m_red(red),
+	m_red(red),
 	m_green(green),
 	m_blue(blue)
 {

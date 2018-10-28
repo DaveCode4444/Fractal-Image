@@ -11,11 +11,11 @@
 #include <utility>
 
 zoom_list::zoom_list(const int &width, const int &height) :
-    m_width(width),
-    m_height(height),
-    m_xCenter{0.0},
-    m_yCenter{0.0},
-    m_scale{1.0}
+	m_width(width),
+	m_height(height),
+	m_xCenter{0.0},
+	m_yCenter{0.0},
+	m_scale{1.0}
 {
 }
 

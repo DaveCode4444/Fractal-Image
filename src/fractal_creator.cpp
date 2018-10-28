@@ -13,13 +13,13 @@
 #include <memory>
 
 fractal_creator::fractal_creator(const int &width, const int &height) :
-    m_width{width},
-    m_height{height},
+	m_width{width},
+	m_height{height},
 	m_total_iterations{0},
 	m_bitmap{width, height},
-    m_zoom_list{width, height},
-    m_histogram(new int[mandelbrot::MAX_ITERATIONS + 1]{0}),
-    m_fractal(new int[m_width * m_height]{0})
+	m_zoom_list{width, height},
+	m_histogram(new int[mandelbrot::MAX_ITERATIONS + 1]{0}),
+	m_fractal(new int[m_width * m_height]{0})
 {
 }
 
@@ -42,6 +42,12 @@ void fractal_creator::run(const std::string &filename)
 
 	//writes to file
 	write_bitmap(filename);
+}
+
+void fractal_creator::add_color_range(double range_end, const rgb &color)
+{
+	m_ranges.push_back(range_end * mandelbrot::MAX_ITERATIONS);
+	m_colors.push_back(color);
 }
 
 void fractal_creator::add_zoom(const zoom &the_zoom)

@@ -17,26 +17,26 @@
 
 class bitmap
 {
-    public:
-	    bitmap(const int &width, const int &height);
-	    virtual ~bitmap();
+	public:
+		bitmap(const int &width, const int &height);
+		virtual ~bitmap();
 
-	    bool write(const std::string &filename);
-	    void set_pixel(int x,
-	    			   int y,
+		bool write(const std::string &filename);
+		void set_pixel(int x,
+					   int y,
 					   std::uint8_t red,
 					   std::uint8_t green,
 					   std::uint8_t blue);
 
-    private:
-	    bool write_headers_and_pixels_to_file(const std::string &filename,
+	private:
+		bool write_headers_and_pixels_to_file(const std::string &filename,
 											  bitmap_headers::bitmap_file_header file_header,
 											  bitmap_headers::bitmap_info_header info_header);
 
-	    int m_height;
-	    int m_width;
+		int m_height;
+		int m_width;
 
-	    std::unique_ptr<std::uint8_t[]> m_pixels; //holds the pixels on the screen
+		std::unique_ptr<std::uint8_t[]> m_pixels; //holds the pixels on the screen
 };
 
 #endif /* INCLUDES_BITMAP_H_ */
