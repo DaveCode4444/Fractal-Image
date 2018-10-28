@@ -21,12 +21,14 @@ class fractal_creator
 	    fractal_creator(const int &width, const int &height);
 	    virtual ~fractal_creator();
 
-	    void add_zoom(const zoom &the_zoom);
-	    void calculate_iterations();
-	    void draw_fractal();
-	    void write_bitmap(const std::string &filename);
+	    void run(const std::string &filename);
 
     private:
+	    void add_zoom(const zoom &the_zoom);
+		void calculate_iterations();
+		void draw_fractal();
+		void write_bitmap(const std::string &filename);
+
 	    const int m_width;
 	    const int m_height;
 	    int m_total_iterations;

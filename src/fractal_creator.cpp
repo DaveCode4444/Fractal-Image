@@ -6,6 +6,7 @@
  */
 #include "../includes/fractal_creator.h"
 #include "../includes/mandelbrot.h"
+#include "../includes/rgb.h"
 
 #include <iostream>
 #include <math.h>
@@ -24,6 +25,23 @@ fractal_creator::fractal_creator(const int &width, const int &height) :
 
 fractal_creator::~fractal_creator()
 {
+}
+
+void fractal_creator::run(const std::string &filename)
+{
+    //adds zooms to zoom_list
+	add_zoom(zoom(m_width/2, m_height/2, 4.0/m_width));
+	add_zoom(zoom(295, m_height - 202, 0.1));
+	add_zoom(zoom(312, m_height - 304, 0.1));
+
+	//calculates total iterations
+	calculate_iterations();
+
+	//coloring scheme and sets pixels
+	draw_fractal();
+
+	//writes to file
+	write_bitmap(filename);
 }
 
 void fractal_creator::add_zoom(const zoom &the_zoom)
@@ -60,6 +78,9 @@ void fractal_creator::calculate_iterations()
 
 void fractal_creator::draw_fractal()
 {
+	rgb start_color(0, 0, 20);
+	rgb end_color(255, 128, 74);
+
 	for(int y = 0; y < m_height; y++)
 	{
 		for(int x = 0; x < m_width; x++)
@@ -76,7 +97,9 @@ void fractal_creator::draw_fractal()
 				{
 					hue += ((double)m_histogram[i])/m_total_iterations;
 				}
-				green = hue * 255;
+				red = start_color.m_red + end_color.m_red * hue;
+				green = start_color.m_green + end_color.m_green * hue;
+				blue = start_color.m_blue + end_color.m_blue * hue;
 			}
 			m_bitmap.set_pixel(x, y, red, green, blue);
 		}
