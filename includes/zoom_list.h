@@ -20,7 +20,7 @@ class zoom_list
 	    virtual ~zoom_list();
 
 	    void add(const zoom &the_zoom);
-	    std::pair<double, double> do_zoom(int x, int y);
+	    std::pair<double, double> do_zoom(int &x, int &y);
 
     private:
 	    std::vector<zoom> m_zooms;
