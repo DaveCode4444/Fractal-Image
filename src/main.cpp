@@ -20,6 +20,7 @@ int main()
 	//creates bitmap, zoom_list, fractal, histogram
 	fractal_creator the_fractal_creator(WIDTH, HEIGHT);
 
+	the_fractal_creator.add_color_range(0.0, rgb(0, 0, 0));
 	the_fractal_creator.add_color_range(0.3, rgb(255, 0, 0));
 	the_fractal_creator.add_color_range(0.5, rgb(255, 255, 0));
 	the_fractal_creator.add_color_range(1.0, rgb(255, 255, 255));

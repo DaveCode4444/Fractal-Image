@@ -1,5 +1,6 @@
 /*
  * mandelbrot.h
+ * Mandelbrot is a set of complex numbers for which the function f(z) = z^2 + c does not diverge
  *
  *  Created on: Oct 1, 2018
  *      Author: Devang Sawant

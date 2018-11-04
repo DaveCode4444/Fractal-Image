@@ -25,9 +25,11 @@ class fractal_creator
 
 		void run(const std::string &filename);
 		void add_color_range(double range_end, const rgb &color);
+		int get_range(int iterations) const;
 
 	private:
 		void add_zoom(const zoom &the_zoom);
+		void calculate_range_totals();
 		void calculate_iterations();
 		void draw_fractal();
 		void write_bitmap(const std::string &filename);
@@ -35,8 +37,10 @@ class fractal_creator
 		const int m_width;
 		const int m_height;
 		int m_total_iterations;
+		bool m_got_first_range;
 		std::vector<int> m_ranges;
 		std::vector<rgb> m_colors;
+		std::vector<int> m_range_totals;
 
 		bitmap m_bitmap;
 		zoom_list m_zoom_list;
